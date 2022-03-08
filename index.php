@@ -1,11 +1,12 @@
 <?php
     if (isset($_POST['submit'])){
-        $searchValue = $_REQUEST['searchValue']; 
         $conn = mysqli_connect('testProj', 'dima', 'test', 'testdatabase');
-        $str = 'laudanti';
+        
+        $searchValue = $_REQUEST['searchValue']; 
         $query = "SELECT posts.title, comments.body FROM posts 
         INNER JOIN comments ON posts.id = comments.postId WHERE
         comments.body LIKE '%$searchValue%'";
+        
         $postCommentsQueried = mysqli_query($conn, $query);
         $postComments = mysqli_fetch_all($postCommentsQueried, MYSQLI_ASSOC);
     }
