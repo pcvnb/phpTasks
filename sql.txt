@@ -1,0 +1,23 @@
+CREATE DATABASE testDatabase;
+USE testdatabase;
+CREATE TABLE posts (
+    userId int,
+    id int,
+    title varchar(255),
+    body text,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE comments (
+    postId int,
+    id int,
+    name varchar(80),
+    email varchar(80),
+    body text,
+    PRIMARY KEY (id)
+);
+
+ALTER TABLE comments add INDEX (postId);
+ALTER TABLE posts add UNIQUE (id);
+ALTER TABLE comments ADD FOREIGN KEY (postId) REFERENCES posts(id) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
